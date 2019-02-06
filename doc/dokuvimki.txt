@@ -140,7 +140,7 @@ only in insert mode.
 
     <C-I><C-D>  decreases the current headline level by one
 
-    e           opens a link under the current cursor position for editing
+    <C-]>       opens a link under the current cursor position for editing
                 (this mappings only works in normal mode)
 
 ------------------------------------------------------------------------------
