@@ -13,7 +13,7 @@
 "
 " You should have received a copy of the GNU General Public License
 " along with this program; if not, write to the Free Software Foundation,
-" Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  
+" Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 "
 " Maintainer:   Michael Klier <chi@chimeric.de>
 " URL:          http://www.chimeric.de/projects/dokuwiki/dokuvimki
@@ -37,7 +37,7 @@ if (has('python3') || has('python')) && version > 700
   endif
 
   " Custom autocompletion function for wiki pages and media files
-  " the global g:pages g:media variables are set/refreshed 
+  " the global g:pages g:media variables are set/refreshed
   " when the index is loaded
   fun! InsertModeComplete(findstart, base)
     if a:findstart
@@ -346,7 +346,7 @@ class DokuVimKi:
         text and save.
         """
 
-        wp = vim.current.buffer.name.rsplit('/', 1)[1]
+        wp = vim.current.buffer.name.rsplit(os.sep, 1)[1]
         try:
             if not self.buffers[wp].iswp:
                 print("Error: Current buffer %s is not a wiki page or not writeable!" % wp, file=sys.stderr)
@@ -675,7 +675,7 @@ class DokuVimKi:
             return
 
         try:
-            buffer = vim.current.buffer.name.rsplit('/', 1)[1]
+            buffer = vim.current.buffer.name.rsplit(os.sep, 1)[1]
             if self.buffers[buffer].iswp:
                 if not bang and self.ismodified(buffer):
                     print("Warning: %s contains unsaved changes! Use DWclose!." % buffer, file=sys.stderr)
@@ -851,7 +851,7 @@ class DokuVimKi:
         row, col = vim.current.window.cursor
 
         # get namespace from current page
-        wp = vim.current.buffer.name.rsplit('/', 1)[1]
+        wp = vim.current.buffer.name.rsplit(os.sep, 1)[1]
         ns = wp.rsplit(':', 1)[0]
         if ns == wp:
             ns = ''
