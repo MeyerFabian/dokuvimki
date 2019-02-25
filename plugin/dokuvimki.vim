@@ -229,9 +229,9 @@ class DokuVimKi:
 
         if self.diffmode:
             self.diff_close()
-
+        """
         self.focus(2)
-
+        """
         if wp.find(':') == -1:
             wp = self.cur_ns + wp
 
@@ -376,13 +376,16 @@ class DokuVimKi:
                             if self.needs_refresh:
                                 self.index(self.cur_ns, True)
                                 self.needs_refresh = False
+                                """
                                 self.focus(2)
+                                """
                         else:
                             print('Page %s removed!' % wp, file=sys.stdout)
                             self.close(False)
                             self.index(self.cur_ns, True)
+                            """
                             self.focus(2)
-
+                            """
                     except dokuwikixmlrpc.DokuWikiXMLRPCError as err:
                         print('DokuVimKi Error: %s' % err, file=sys.stderr)
         except KeyError as err:
@@ -430,8 +433,9 @@ class DokuVimKi:
         index = []
         pages = []
         dirs = []
-
+        """
         self.focus(1)
+        """
         vim.command('set winwidth=' + self.index_winwith)
         vim.command('set winminwidth=' + self.index_winwith)
 
@@ -633,7 +637,9 @@ class DokuVimKi:
                 vim.command('setlocal modifiable')
 
                 if pattern:
+                    print('%s' %pattern, file=sys.stderr)
                     p = re.compile(pattern)
+                    print('%s' %p, file=sys.stderr)
                     result = filter(p.search, self.pages)
                 else:
                     result = self.pages
@@ -919,13 +925,13 @@ class DokuVimKi:
             return
 
         if line.find('..') == -1:
-            if line.find('/') == -1:
+            if line.find(os.sep) == -1:
                 if not line:
                     print("meh", file=sys.stdout)
                 else:
                     line = self.cur_ns + line
             else:
-                line = self.cur_ns + line.replace('/', ':')
+                line = self.cur_ns + line.replace(os.sep, ':')
         else:
             line = self.cur_ns.rsplit(':', 2)[0] + ':'
             if line == ":" or line == self.cur_ns:
