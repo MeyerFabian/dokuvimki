@@ -958,18 +958,9 @@ class DokuVimKi:
         """
         Setup edit environment.
         """
-
-        vim.command('setlocal textwidth=0')
-        vim.command('setlocal wrap')
-        vim.command('setlocal linebreak')
         vim.command('setlocal syntax=dokuwiki')
         vim.command('setlocal filetype=dokuwiki')
-        vim.command('setlocal tabstop=2')
-        vim.command('setlocal expandtab')
-        vim.command('setlocal shiftwidth=2')
         vim.command('setlocal encoding=utf-8')
-        vim.command('setlocal completefunc=InsertModeComplete')
-        vim.command('setlocal omnifunc=InsertModeComplete')
         vim.command('map <buffer> <silent> <C-]> :Py dokuvimki.id_lookup()<CR>')
         vim.command('imap <buffer> <silent> <C-D><C-B> ****<ESC>1hi')
         vim.command('imap <buffer> <silent> <C-D><C-I> ////<ESC>1hi')
